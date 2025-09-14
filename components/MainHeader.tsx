@@ -83,7 +83,7 @@ export const MainHeader = () => {
                 variant="ghost"
                 onClick={() => router.push("/admin")}
               >
-                Admin Mode
+                Admin Panel
               </Button>
             )}
           </div>
