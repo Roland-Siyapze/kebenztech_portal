@@ -91,7 +91,7 @@ export const RoleForm = ({ initialData }: { initialData: User | null }) => {
                       }}
                     >
                       <Radio value="STUDENT">STUDENT</Radio>
-                      <Radio value="TEACHER">TEACHER</Radio>
+                      <Radio value="ADMIN">ADMIN</Radio>
                     </RadioGroup>
                   </FormControl>
                   <FormMessage />

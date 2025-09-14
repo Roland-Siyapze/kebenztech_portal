@@ -4,7 +4,7 @@ import { redirect } from "next/navigation";
 import { db } from "@/lib/db";
 import { auth } from "@clerk/nextjs";
 
-export default async function TeacherPage({
+export default async function AdminLayout({
   children,
 }: {
   children: React.ReactNode;
@@ -17,7 +17,7 @@ export default async function TeacherPage({
     where: { userId },
   });
 
-  if (user?.role !== "TEACHER") {
+  if (user?.role !== "ADMIN") {
     return redirect("/");
   }
 

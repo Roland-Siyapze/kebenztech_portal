@@ -35,7 +35,7 @@ export const CourseActions = ({
         toast.success("Course unpublished");
       } else {
         await axios.patch(`/api/courses/${courseId}/publish`);
-        router.push('/teacher');
+        router.push('/admin');
         toast.success("Course published");
       }
 
@@ -55,7 +55,7 @@ export const CourseActions = ({
 
       toast.success("Course deleted");
       router.refresh();
-      router.push(`/teacher`);
+      router.push(`/admin`);
     } catch {
       toast.error("Something went wrong");
     } finally {

@@ -27,12 +27,12 @@ model User {
 
 enum Role {
   STUDENT
-  TEACHER
+  ADMIN
 }
 
 model Course {
   id          String  @id @default(uuid())
-  userId      String
+  userId      String  // This will now be the admin's userId
   title       String  @db.Text
   description String? @db.Text
   imageUrl    String? @db.Text

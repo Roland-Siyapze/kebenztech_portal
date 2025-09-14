@@ -29,7 +29,7 @@ export const ConfirmModel = ({ onConfirm, isLoading }: ConfirmModelProps) => {
   return (
     <>
       <div className="flex flex-wrap gap-3">
-        {pathname == "/teacher" ? (
+        {pathname == "/admin" ? (
           <Tooltip color="danger" content="Delete course">
             <button
               className="w-full h-full text-danger cursor-pointer active:opacity-50"

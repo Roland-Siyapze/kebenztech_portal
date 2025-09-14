@@ -42,7 +42,7 @@ export default function CreatePage() {
   const onSubmit = async (data: z.infer<typeof formSchema>) => {
     try {
       const response = await axios.post("/api/courses", data);
-      router.push(`/teacher/${response.data.id}`);
+      router.push(`/admin/${response.data.id}`);
       toast.success("Course created");
     } catch (err) {
       toast.error("Something went wrong");
@@ -89,7 +89,7 @@ export default function CreatePage() {
               )}
             />
             <div className="flex items-center gap-x-2">
-              <Link href="/teacher">
+              <Link href="/admin">
                 <Button type="button" variant="ghost" className="border-0">
                   Cancel
                 </Button>

@@ -12,7 +12,7 @@ import { Search } from "lucide-react";
 import Link from "next/link";
 
 interface SearchInputProps {
-  isTeacherPage?: boolean;
+  isAdminPage?: boolean;
   isPlayerPage?: boolean;
   isCoursePage?: boolean;
 }
@@ -25,7 +25,7 @@ interface SearchResult {
 }
 
 export const SearchInput = ({
-  isTeacherPage,
+  isAdminPage,
   isCoursePage,
   isPlayerPage,
 }: SearchInputProps) => {
@@ -60,7 +60,7 @@ export const SearchInput = ({
   return (
     <div
       className={cn(
-        isTeacherPage || isPlayerPage || isCoursePage ? "hidden" : ""
+        isAdminPage || isPlayerPage || isCoursePage ? "hidden" : ""
       )}
     >
       <Input

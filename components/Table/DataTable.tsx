@@ -158,7 +158,7 @@ export const DataTable = ({ courseData, categoryData }: DataTableProps) => {
           <Button
             color="primary"
             endContent={<PlusIcon />}
-            onClick={() => router.push("/teacher/create")}
+            onClick={() => router.push("/admin/create")}
             size="md"
           >
             create
@@ -290,7 +290,7 @@ export const DataTable = ({ courseData, categoryData }: DataTableProps) => {
                 <Tooltip content="Edit course">
                   <div
                     className="w-full h-full text-blue-600 cursor-pointer active:opacity-50"
-                    onClick={() => router.push(`/teacher/${item.id}`)}
+                    onClick={() => router.push(`/admin/${item.id}`)}
                   >
                     <EditIcon size={18} />
                   </div>

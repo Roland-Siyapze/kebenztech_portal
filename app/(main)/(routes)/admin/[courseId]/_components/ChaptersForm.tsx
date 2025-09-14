@@ -84,7 +84,7 @@ interface ChaptersFormProps {
     }
   
     const onEdit = (id: string) => {
-      router.push(`/teacher/${courseId}/chapters/${id}`);
+      router.push(`/admin/${courseId}/chapters/${id}`);
     }
   
     return (

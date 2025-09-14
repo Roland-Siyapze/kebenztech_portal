@@ -31,7 +31,7 @@ export const MainHeader = () => {
 
   const { user } = useUser();
 
-  let isTeacherPage = pathname?.startsWith("/teacher");
+  let isAdminPage = pathname?.startsWith("/admin");
   let isPlayerPage = pathname?.includes("/chapter");
   let isCoursePage = pathname?.startsWith("/course");
 
@@ -60,15 +60,15 @@ export const MainHeader = () => {
           />
         </Link>
         <div className="hidden lg:block">
-          <SearchInput isTeacherPage={isTeacherPage} isPlayerPage={isPlayerPage} isCoursePage={isCoursePage} />
+          <SearchInput isAdminPage={isAdminPage} isPlayerPage={isPlayerPage} isCoursePage={isCoursePage} />
         </div>
       </div>
       <div className="flex flex-row justify-start items-center ml-auto gap-x-4">
-        {user?.role == "TEACHER" ? (
+        {user?.role == "ADMIN" ? (
           <div
             className={cn(isCoursePage ? "hidden" : "flex flex-row gap-x-2")}
           >
-            {isTeacherPage || isPlayerPage ? (
+            {isAdminPage || isPlayerPage ? (
               <Button
                 size="sm"
                 variant="ghost"
@@ -81,9 +81,9 @@ export const MainHeader = () => {
               <Button
                 size="sm"
                 variant="ghost"
-                onClick={() => router.push("/teacher")}
+                onClick={() => router.push("/admin")}
               >
-                Teacher Mode
+                Admin Mode
               </Button>
             )}
           </div>
@@ -110,7 +110,7 @@ export const MainHeader = () => {
               <DropdownItem
                 key="dashboard"
                 onClick={() => router.push("/student/dashboard")}
-                className={`${user?.role == "TEACHER" ? "hidden" : ""}`}
+                className={`${user?.role == "ADMIN" ? "hidden" : ""}`}
               >
                 Dashboard
               </DropdownItem>

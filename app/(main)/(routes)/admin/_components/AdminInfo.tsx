@@ -6,7 +6,7 @@ import { useUser } from "@/context/userContext";
 import { Avatar } from "@nextui-org/react";
 import { cn } from "@/lib/utils";
 
-export const TeacherInfo = () => {
+export const AdminInfo = () => {
   const { user } = useUser();
   return (
     <div className="w-full h-auto max-h-fit flex flex-col lg:flex-row">
@@ -18,16 +18,21 @@ export const TeacherInfo = () => {
         />
       </div>
       <div className="flex flex-col items-center lg:items-start justify-center lg:justify-start space-y-4 lg:mt-10">
-        <h1 className="text-2xl font-semibold">
-          {user?.firstName} {user?.lastName}
-        </h1>
+        <div className="flex items-center gap-2">
+          <h1 className="text-2xl font-semibold">
+            {user?.firstName} {user?.lastName}
+          </h1>
+          <div className="px-3 py-1 bg-purple-100 text-purple-700 rounded-full text-sm font-medium">
+            Admin
+          </div>
+        </div>
         <p
           className={cn(
             "text-sm text-gray-400 font-normal italic",
             !user?.desription && "text-gray-600"
           )}
         >
-          {user?.desription || "No description"}
+          {user?.desription || "Course Administrator - Managing company learning content"}
         </p>
       </div>
     </div>
