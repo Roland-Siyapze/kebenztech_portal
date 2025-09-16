@@ -43,19 +43,19 @@ export const MainHeader = () => {
       <div className="flex flex-row justify-start items-center mr-auto">
         <Link href={isSignedIn ? "/" : "/"}>
           <Image
-            src="/logo-black.svg"
+            src="/logo-rm.png"
             alt="learn"
-            width={110}
-            height={110}
+            width={130}
+            height={130}
             className="dark:hidden"
           />
         </Link>
         <Link href={isSignedIn ? "" : "/"}>
           <Image
-            src="/logo-white.svg"
+            src="/logo-rm.png"
             alt="learn"
-            width={110}
-            height={110}
+            width={130}
+            height={130}
             className="hidden dark:block"
           />
         </Link>

@@ -6,14 +6,14 @@ const Footer = () => {
     <footer className="flex flex-row justify-between items-center p-4 bg-background mt-24">
       <aside className="flex flex-row items-center gap-4">
         <Image
-          src="/logo-black.svg"
+          src="/logo-rm.png"
           alt="learn"
           width={110}
           height={110}
           className="dark:hidden"
         />
         <Image
-          src="/logo-white.svg"
+          src="/logo-rm.png"
           alt="learn"
           width={110}
           height={110}
