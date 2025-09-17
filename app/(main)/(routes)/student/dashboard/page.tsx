@@ -1,3 +1,5 @@
+// app/(main)/(routes)/student/dashboard/page.tsx
+
 import React from "react";
 import Link from "next/link";
 import { redirect } from "next/navigation";
@@ -6,15 +8,20 @@ import { db } from "@/lib/db";
 import { auth } from "@clerk/nextjs";
 
 import { ArrowLeft } from "lucide-react";
-
-import { CourseList } from "./_components/courseList";
+import { StudentDashboardContent } from "./_components/StudentDashboardContent";
 
 export default async function DashboardPage() {
   const { userId } = auth();
 
   if (!userId) return redirect("/");
 
-  const course = await db.course.findMany({
+  // Fetch user data
+  const userData = await db.user.findUnique({
+    where: { userId },
+  });
+
+  // Fetch purchased courses
+  const purchasedCourses = await db.course.findMany({
     where: {
       isPublished: true,
       purchases: {
@@ -25,9 +32,39 @@ export default async function DashboardPage() {
     },
     include: {
       category: true,
-      chapters: true,
+      chapters: {
+        where: {
+          isPublished: true,
+        },
+        orderBy: {
+          position: "asc",
+        },
+      },
+      purchases: {
+        where: {
+          userId,
+        },
+      },
+      attachments: true,
     },
-    orderBy: { id: "asc" },
+    orderBy: { updatedAt: "desc" },
+  });
+
+  // Get all purchases for this user to show purchase history
+  const allPurchases = await db.purchase.findMany({
+    where: {
+      userId,
+    },
+    include: {
+      course: {
+        include: {
+          category: true,
+        },
+      },
+    },
+    orderBy: {
+      createdAt: "desc",
+    },
   });
 
   return (
@@ -39,27 +76,12 @@ export default async function DashboardPage() {
         <ArrowLeft className="h-4 w-4 mr-2" />
         Back to Home
       </Link>
-      {course.length == 1 && (
-        <h1 className="text-2xl font-semibold my-7">Your Purchased Courses.</h1>
-      )}
-      {course.length == 0 ? (
-        <div className="flex justify-center">
-          <div className="flex justify-center items-center text-xl text-gray-500">
-            No courses are Purhased
-          </div>
-        </div>
-      ) : (
-        <CourseList
-          coursesData={course.map((data) => ({
-            id: data.id,
-            title: data.title,
-            imageUrl: data.imageUrl,
-            category: data.category?.name,
-            chapters: data.chapters.length,
-            price: data.price,
-          }))}
-        />
-      )}
+
+      <StudentDashboardContent 
+        userData={userData}
+        purchasedCourses={purchasedCourses}
+        allPurchases={allPurchases}
+      />
     </div>
   );
 }
